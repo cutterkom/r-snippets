@@ -25,3 +25,36 @@ df %>% filter(ncol(.) - rowSums(is.na(.)) != 0)
 # remove rows where all variables are NA using dplyr (except id row)
 # count number of columns and number of columns with NA --> if 1, then all values, except one (id) are NA
 df %>% filter(ncol(.) - rowSums(is.na(.)) != 1)
+
+# say, which values are NAs
+read.csv(..., na.strings = c("","NA"))
+
+# dataMaid package
+library(dataMaid)
+data("toyData")
+# make pdf report
+makeDataReport(toyData)
+# check specific columns
+check(toyData$events)
+# all check functions
+allCheckFunctions()
+
+
+# create variable with mutate and pass the name in the function
+# first a dummy column_name has to be created and then be renamed
+# important: the naming must be done like !!quo_name(column_name) := dummy_name
+create_var <- function(column_name) { 
+  df <- df %>% 
+    mutate(dummy_name = sum(some_column) %>%
+    rename(!!quo_name(column_name) := dummy_name)
+}  
+
+
+# web scraping - rvest: check if attribute exists -> if: scrape, else: NA
+library(rvest)
+page <- read_html(path)
+if (length(html_node(page)) == 1) {
+    var <- html_node(page)
+} else {
+    var <- NA
+}
