@@ -53,7 +53,7 @@ create_var <- function(column_name) {
 # web scraping - rvest: check if attribute exists -> if: scrape, else: NA
 library(rvest)
 page <- read_html(path)
-if (length(html_node(page)) == 1) {
+if (length(html_node(page)) > 0) {
     var <- html_node(page)
 } else {
     var <- NA
