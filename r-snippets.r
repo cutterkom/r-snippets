@@ -58,3 +58,15 @@ if (length(html_node(page)) > 0) {
 } else {
     var <- NA
 }
+
+
+# download HTML pages (bulk)
+for (i in links) {
+  download_html(url = paste0(BASE_URL, i), file = paste0("path_to_save", i, ".html"), mode = "wb")
+}
+
+# nested list to dataframe with list names as column values
+library(jsonlite)
+library(tidyverse)
+jsonlite::fromJSON("data.json") %>% 
+  bind_rows(., .id = 'column_name')
