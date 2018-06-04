@@ -71,7 +71,7 @@ library(tidyverse)
 jsonlite::fromJSON("data.json") %>% 
   bind_rows(., .id = 'column_name')
 
-# batch copying files 
+# bulk copying files 
 copy_files <- function(from, to, file_type) {
   files <- list.files(from, file_type, full.names = TRUE)
   file.copy(files, to)
