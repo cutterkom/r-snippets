@@ -78,3 +78,18 @@ copy_files <- function(from, to, file_type) {
 }
 
 copy_files("../from_path", "../to_path", ".json")
+
+# expand row depending on a column value
+# example: n = 3 --> second column with 1:3
+library(tidyverse)
+df <- data.frame(n = 3) 
+df %>% mutate(value = map2(1, n, ~ seq(from = .x, to = .y))) %>% unnest()
+
+
+# create string depending on two inputs
+library(tidyverse)
+# map2 for multiple inputs in purrr https://purrr.tidyverse.org/reference/map2.html
+map2(df$input1, df$input2, function(inpu1, input2) {
+  string <- paste0("i am", input1, input2)
+  print(string)
+})
